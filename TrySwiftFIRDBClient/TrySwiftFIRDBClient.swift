@@ -109,7 +109,7 @@ class TrySwiftFIRDBClient {
             return
         }
         let request: URLRequest = createMutableUrlRequest(method: .delete, path: path) as URLRequest
-        let task = session.dataTask(with: request) { (data, response, error) in
+        let task = session.dataTask(with: request) { (_, response, error) in
             var result: String = "error"
 
             if error == nil {
