@@ -62,7 +62,12 @@ class TrySwiftFIRDBClient {
 
     func post(value: Any, path: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
         let mutableRequest: NSMutableURLRequest = createMutableUrlRequest(method: .post, path: path)
-        let jsonData = try! JSONSerialization.data(withJSONObject: value)
+        var jsonData: Data? = nil
+        if value is Data {
+            jsonData = value as? Data
+        } else {
+            jsonData = try! JSONSerialization.data(withJSONObject: value)
+        }
         mutableRequest.httpBody = jsonData
         let request: URLRequest = mutableRequest as URLRequest
         let task = session.dataTask(with: request) { (data, response, error) in
