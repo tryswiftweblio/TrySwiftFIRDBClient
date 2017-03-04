@@ -8,6 +8,13 @@
 
 import Foundation
 
+fileprivate enum HttpMethod: String {
+    case get = "GET"
+    case post = "POST"
+    case put = "PUT"
+    case delete = "DELETE"
+}
+
 class TrySwiftFIRDBClient {
     let config: TrySwiftFIRDBClientConfig
     let session: URLSession = URLSession.shared
@@ -16,7 +23,11 @@ class TrySwiftFIRDBClient {
         self.config = config
     }
 
-    func createMutableUrlRequest(path: String? = nil) -> NSMutableURLRequest! {
+    fileprivate func createMutableUrlRequest(path: String? = nil) -> NSMutableURLRequest! {
+        return createMutableUrlRequest(method: .get, path: path)
+    }
+
+    fileprivate func createMutableUrlRequest(method: HttpMethod, path: String? = nil) -> NSMutableURLRequest! {
         let regex = try! NSRegularExpression(pattern: "^/+", options: [])
         let p = (path ?? "")
         let range = NSMakeRange(0, p.characters.count)
@@ -30,7 +41,9 @@ class TrySwiftFIRDBClient {
         let components: NSURLComponents = NSURLComponents(url: url, resolvingAgainstBaseURL: false)!
         components.queryItems = [URLQueryItem]()
         components.queryItems?.append(URLQueryItem(name: "auth", value: config.apiSecret))
-        return NSMutableURLRequest(url: components.url!)
+        let mutableRequest = NSMutableURLRequest(url: components.url!)
+        mutableRequest.httpMethod = method.rawValue
+        return mutableRequest
     }
 
     func get(path: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
