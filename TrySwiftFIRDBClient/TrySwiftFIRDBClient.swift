@@ -60,7 +60,22 @@ class TrySwiftFIRDBClient {
     }
 
     func put() {}
-    func post() {}
+    func post(value: Any, path: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
+        let mutableRequest: NSMutableURLRequest = createMutableUrlRequest(method: .post, path: path)
+        let jsonData = try! JSONSerialization.data(withJSONObject: value)
+        mutableRequest.httpBody = jsonData
+        let request: URLRequest = mutableRequest as URLRequest
+        let task = session.dataTask(with: request) { (data, response, error) in
+            var result: NSDictionary? = nil
+
+            if data != nil && error == nil {
+                result = try! JSONSerialization.jsonObject(with: data!, options: [.mutableContainers]) as! NSDictionary
+            }
+            completionHandler(result, response, error)
+        }
+        task.resume()
+    }
+
     func patch() {}
     func delete() {}
 }
