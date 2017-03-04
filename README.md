@@ -13,7 +13,7 @@ Binary will be output to `build/TrySwiftFIRDBClient`.
 
 
 ## How to run
-Firebase Database is preset, if you'd like to change the DB,
+Sample Firebase Database setting is preset, if you'd like to change the DB,
 please set the DB Root URL and API secret key by `--db-url` and `--api-secret`.
 
     # Show help
