@@ -18,6 +18,9 @@ please set the DB Root URL and API secret key by `--db-url` and `--api-secret`.
     # Fetch / from default Firebase Database
     $ ./build/TrySwiftFIRDBClient
 
+    # Fetch / from another Firebase Database
+    $ ./build/TrySwiftFIRDBClient --db-url='https://friendlychat-deadbeef.firebaseio.com/' --api-secret='deadbeef' get /
+
     # Fetch data by path
     $ ./build/TrySwiftFIRDBClient get <path>
 
