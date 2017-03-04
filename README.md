@@ -22,16 +22,20 @@ please set the DB Root URL and API secret key by `--db-url` and `--api-secret`.
     # Fetch / from default Firebase Database
     $ ./build/TrySwiftFIRDBClient
 
-    # Fetch / from another Firebase Database
-    $ ./build/TrySwiftFIRDBClient --db-url='https://friendlychat-deadbeef.firebaseio.com/' --api-secret='deadbeef' get /
-
     # Fetch data by path
     $ ./build/TrySwiftFIRDBClient get <path>
 
-    # Post/Put/Patch data to the path specified
-    $ ./build/TrySwiftFIRDBClient post <path> '<<json>>'
+    # Fetch / from another Firebase Database
+    $ ./build/TrySwiftFIRDBClient \
+        --db-url='https://friendlychat-deadbeef.firebaseio.com/' \
+        --api-secret='deadbeef' get /
 
-    # Delete data
+    # Post/Put/Patch data to the path specified
+    $ ./build/TrySwiftFIRDBClient post  <path> '<<json string>>'
+    $ ./build/TrySwiftFIRDBClient put   <path> '<<json string>>'
+    $ ./build/TrySwiftFIRDBClient patch <path> '<<json string>>'
+
+    # Delete data by given path
     $ ./build/TrySwiftFIRDBClient delete <path>
 
 
