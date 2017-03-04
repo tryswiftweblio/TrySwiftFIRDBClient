@@ -89,7 +89,7 @@ class TrySwiftFIRDBClient {
         } else {
             jsonData = try! JSONSerialization.data(withJSONObject: value)
         }
-        request.httpBody = try! JSONSerialization.data(withJSONObject: value)
+        request.httpBody = jsonData
         let task = session.dataTask(with: request) { (data, response, error) in
             var result: NSDictionary? = nil
             if data != nil && error == nil {
@@ -108,7 +108,7 @@ class TrySwiftFIRDBClient {
         } else {
             jsonData = try! JSONSerialization.data(withJSONObject: value)
         }
-        request.httpBody = try! JSONSerialization.data(withJSONObject: value)
+        request.httpBody = jsonData
         let task = session.dataTask(with: request) { (data, response, error) in
             var result: NSDictionary? = nil
             

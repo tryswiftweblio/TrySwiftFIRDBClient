@@ -31,6 +31,8 @@
 		12F410641E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrySwiftFIRDBClient.swift; sourceTree = "<group>"; };
 		12F410661E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrySwiftFIRDBClientConfig.swift; sourceTree = "<group>"; };
 		12F410681E6A97D100DB2D3F /* ArgParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgParse.swift; sourceTree = "<group>"; };
+		12F4106D1E6AB36800DB2D3F /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = SOURCE_ROOT; };
+		12F4106E1E6AB36800DB2D3F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,8 @@
 		12F4105C1E6A68CA00DB2D3F /* TrySwiftFIRDBClient */ = {
 			isa = PBXGroup;
 			children = (
+				12F4106D1E6AB36800DB2D3F /* build.sh */,
+				12F4106E1E6AB36800DB2D3F /* README.md */,
 				12F4105D1E6A68CA00DB2D3F /* main.swift */,
 				12F410641E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift */,
 				12F410661E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift */,
@@ -265,6 +269,7 @@
 				12F410631E6A68CA00DB2D3F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -85,6 +85,18 @@ switch command {
         semaphore.wait()
         break
     case "delete":
+        let semaphore = DispatchSemaphore(value:0)
+        let path = positionalArgs.count > 1 ? positionalArgs[1] : ""
+        let client : TrySwiftFIRDBClient = TrySwiftFIRDBClient(config: config)
+        client.delete(path: path) { (result, response, error) in
+            if error == nil {
+                print(result)
+            } else {
+                print("\(error)")
+            }
+            semaphore.signal()
+        }
+        semaphore.wait()
         break
     case "patch":
         guard positionalArgs.count > 2, let value = positionalArgs[2].data(using: .utf8) else {
