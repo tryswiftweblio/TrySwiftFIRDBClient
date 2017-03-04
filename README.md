@@ -1,6 +1,6 @@
 TrySwiftFIRDBClient
 ==========
-Simple Firebase Database Client
+Simple Firebase Database Client CLI
 
 https://devpost.com/software/firebase-realtime-database-rest-api-client
 
