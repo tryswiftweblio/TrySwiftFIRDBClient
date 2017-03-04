@@ -16,8 +16,7 @@ let USAGE = "app [--db-url url] [--api-secret key] [get|post|put|delete|patch [a
 
 let args = parseArgs()!
 let options: [String:String]! = args.optionalArgsMap
-//let positionalArgs: [String]! = args.positionalArgs
-let positionalArgs: [String]! = ["post", "messages", "{\"name\":\"oshima\", \"text\":\"test\"}"]
+let positionalArgs: [String]! = args.positionalArgs
 
 let config : TrySwiftFIRDBClientConfig = TrySwiftFIRDBClientConfig(
     dbUrl: options["--db-url"] != nil ? URL(string: options["--db-url"]!)! : DEFAULT_CONFIG.dbUrl,
