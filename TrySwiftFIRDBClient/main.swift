@@ -65,10 +65,46 @@ switch command {
         semaphore.wait()
         break
     case "put":
+        guard positionalArgs.count > 2, let value = positionalArgs[2].data(using: .utf8) else {
+            print("error")
+            abort()
+        }
+        let semaphore = DispatchSemaphore(value:0)
+        let path = positionalArgs[1]
+        
+        let client : TrySwiftFIRDBClient = TrySwiftFIRDBClient(config: config)
+        client.put(value: value, path: path) { (responseData, response, error) in
+            if responseData != nil && error == nil {
+                let json = try! JSONSerialization.data(withJSONObject: responseData as Any, options: .prettyPrinted)
+                print(String(data: json, encoding: .utf8)!)
+            } else {
+                print("\(error)")
+            }
+            semaphore.signal()
+        }
+        semaphore.wait()
         break
     case "delete":
         break
     case "patch":
+        guard positionalArgs.count > 2, let value = positionalArgs[2].data(using: .utf8) else {
+            print("error")
+            abort()
+        }
+        let semaphore = DispatchSemaphore(value:0)
+        let path = positionalArgs[1]
+        
+        let client : TrySwiftFIRDBClient = TrySwiftFIRDBClient(config: config)
+        client.patch(value: value, path: path) { (responseData, response, error) in
+            if responseData != nil && error == nil {
+                let json = try! JSONSerialization.data(withJSONObject: responseData as Any, options: .prettyPrinted)
+                print(String(data: json, encoding: .utf8)!)
+            } else {
+                print("\(error)")
+            }
+            semaphore.signal()
+        }
+        semaphore.wait()
         break
     default:
         print(USAGE)

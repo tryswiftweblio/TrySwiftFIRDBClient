@@ -83,6 +83,12 @@ class TrySwiftFIRDBClient {
     
     func put(value: Any, path: String? = nil, parameter: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
         var request: URLRequest = createMutableUrlRequest(method: .put, path: path) as URLRequest
+        var jsonData: Data? = nil
+        if value is Data {
+            jsonData = value as? Data
+        } else {
+            jsonData = try! JSONSerialization.data(withJSONObject: value)
+        }
         request.httpBody = try! JSONSerialization.data(withJSONObject: value)
         let task = session.dataTask(with: request) { (data, response, error) in
             var result: NSDictionary? = nil
@@ -96,6 +102,12 @@ class TrySwiftFIRDBClient {
     
     func patch(value: Any, path: String? = nil, parameter: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
         var request: URLRequest = createMutableUrlRequest(method: .patch, path: path) as URLRequest
+        var jsonData: Data? = nil
+        if value is Data {
+            jsonData = value as? Data
+        } else {
+            jsonData = try! JSONSerialization.data(withJSONObject: value)
+        }
         request.httpBody = try! JSONSerialization.data(withJSONObject: value)
         let task = session.dataTask(with: request) { (data, response, error) in
             var result: NSDictionary? = nil
