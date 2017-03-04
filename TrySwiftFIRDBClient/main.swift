@@ -20,7 +20,7 @@ let positionalArgs: [String]! = args.positionalArgs
 
 if options["--help"] != nil {
     print(USAGE)
-    abort()
+    exit(0)
 }
 
 let config : TrySwiftFIRDBClientConfig = TrySwiftFIRDBClientConfig(
@@ -39,6 +39,7 @@ switch command {
                 print(String(data: json, encoding: .utf8)!)
             } else {
                 print("\(error)")
+                exit(1)
             }
             semaphore.signal()
         }
@@ -47,7 +48,7 @@ switch command {
     case "post":
         guard positionalArgs.count > 2, let value = positionalArgs[2].data(using: .utf8) else {
             print("error")
-            abort()
+            exit(1)
         }
         let semaphore = DispatchSemaphore(value:0)
         let path = positionalArgs[1]
@@ -59,6 +60,7 @@ switch command {
                 print(String(data: json, encoding: .utf8)!)
             } else {
                 print("\(error)")
+                exit(1)
             }
             semaphore.signal()
         }
@@ -75,6 +77,7 @@ switch command {
                 print(result)
             } else {
                 print("\(error)")
+                exit(1)
             }
             semaphore.signal()
         }
@@ -84,5 +87,5 @@ switch command {
         break
     default:
         print(USAGE)
-        abort()
+        exit(1)
 }
