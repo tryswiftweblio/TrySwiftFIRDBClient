@@ -66,6 +66,7 @@ class TrySwiftFIRDBClient {
         let request: URLRequest = mutableRequest as URLRequest
         let task = session.dataTask(with: request) { (data, response, error) in
             var result: NSDictionary? = nil
+            
             if data != nil && error == nil {
                 result = try! JSONSerialization.jsonObject(with: data!, options: [.mutableContainers]) as! NSDictionary
             }
@@ -87,7 +88,21 @@ class TrySwiftFIRDBClient {
         task.resume()
     }
     
-    func patch() {}
+    func patch(value: Any, path: String? = nil, parameter: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
+        var request: URLRequest = createMutableUrlRequest(path: path) as URLRequest
+        request.httpMethod = "PATCH"
+        request.httpBody = try! JSONSerialization.data(withJSONObject: value)
+        let task = session.dataTask(with: request) { (data, response, error) in
+            var result: NSDictionary? = nil
+            
+            if data != nil && error == nil {
+                result = try! JSONSerialization.jsonObject(with: data!, options: [.mutableContainers]) as! NSDictionary
+            }
+            completionHandler(result, response, error)
+        }
+        task.resume()
+    }
+    
     func delete(path: String, completionHandler: @escaping (String, URLResponse?, Error?) -> Void) {
         if path.isEmpty {
             print("error")

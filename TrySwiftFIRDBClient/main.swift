@@ -21,16 +21,6 @@ client.get { (responseData, response, error) in
 
 semaphore.wait()
 
-let value: [String: Any] = ["name": "anonymous", "text": "hoge"]
-
-client.put(value: value, path: "messages/-K2ib4H77rj0LYewF7dP") { (responseData, response, error) in
-    print("\(responseData)")
-    semaphore.signal()
-}
-
-semaphore.wait()
-
-
 //client.get(path: "")
 //client.get(path: "/")
 //client.get(path: "/messages")
