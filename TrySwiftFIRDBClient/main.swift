@@ -18,6 +18,11 @@ let args = parseArgs()!
 let options: [String:String]! = args.optionalArgsMap
 let positionalArgs: [String]! = args.positionalArgs
 
+if options["--help"] != nil {
+    print(USAGE)
+    abort()
+}
+
 let config : TrySwiftFIRDBClientConfig = TrySwiftFIRDBClientConfig(
     dbUrl: options["--db-url"] != nil ? URL(string: options["--db-url"]!)! : DEFAULT_CONFIG.dbUrl,
         apiSecret: options["--api-secret"] ?? DEFAULT_CONFIG.apiSecret)
