@@ -10,6 +10,7 @@
 		12F4105E1E6A68CA00DB2D3F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F4105D1E6A68CA00DB2D3F /* main.swift */; };
 		12F410651E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F410641E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift */; };
 		12F410671E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F410661E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift */; };
+		12F410691E6A97D100DB2D3F /* ArgParse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12F410681E6A97D100DB2D3F /* ArgParse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 		12F4105D1E6A68CA00DB2D3F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		12F410641E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrySwiftFIRDBClient.swift; sourceTree = "<group>"; };
 		12F410661E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrySwiftFIRDBClientConfig.swift; sourceTree = "<group>"; };
+		12F410681E6A97D100DB2D3F /* ArgParse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArgParse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				12F4105D1E6A68CA00DB2D3F /* main.swift */,
 				12F410641E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift */,
 				12F410661E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift */,
+				12F410681E6A97D100DB2D3F /* ArgParse.swift */,
 			);
 			path = TrySwiftFIRDBClient;
 			sourceTree = "<group>";
@@ -129,6 +132,7 @@
 			files = (
 				12F410651E6A8FE800DB2D3F /* TrySwiftFIRDBClient.swift in Sources */,
 				12F4105E1E6A68CA00DB2D3F /* main.swift in Sources */,
+				12F410691E6A97D100DB2D3F /* ArgParse.swift in Sources */,
 				12F410671E6A900300DB2D3F /* TrySwiftFIRDBClientConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

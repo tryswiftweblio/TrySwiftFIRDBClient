@@ -8,20 +8,46 @@
 
 import Foundation
 
+let DEFAULT_CONFIG = TrySwiftFIRDBClientConfig(
+    dbUrl: URL(string: "https://tryswiftfirdbclient-ceca0.firebaseio.com/")!,
+    apiSecret: "E826Cq9Lsz9LvcfHtjEIVa1SrMeEESed3y59dqDE")
+
+let USAGE = "app [--db-url url] [--api-secret key] [get|post|put|delete|patch [args ...]]"
+
+let args = parseArgs()!
+let options: [String:String]! = args.optionalArgsMap
+let positionalArgs: [String]! = args.positionalArgs
+
 let config : TrySwiftFIRDBClientConfig = TrySwiftFIRDBClientConfig(
-        dbUrl: URL(string: "https://tryswiftfirdbclient-ceca0.firebaseio.com/")!,
-        apiSecret: "E826Cq9Lsz9LvcfHtjEIVa1SrMeEESed3y59dqDE")
+    dbUrl: options["--db-url"] != nil ? URL(string: options["--db-url"]!)! : DEFAULT_CONFIG.dbUrl,
+        apiSecret: options["--api-secret"] ?? DEFAULT_CONFIG.apiSecret)
 
-let semaphore = DispatchSemaphore(value:0)
-let client : TrySwiftFIRDBClient = TrySwiftFIRDBClient(config: config)
-client.get { (responseData, response, error) in
-    print("\(responseData)")
-    semaphore.signal()
+let command = positionalArgs.first ?? "get"
+switch command {
+    case "get":
+        let semaphore = DispatchSemaphore(value:0)
+        let path = positionalArgs.count > 1 ? positionalArgs[1] : ""
+        let client : TrySwiftFIRDBClient = TrySwiftFIRDBClient(config: config)
+        client.get(path: path) { (responseData, response, error) in
+            if responseData != nil && error == nil {
+                let json = try! JSONSerialization.data(withJSONObject: responseData as Any, options: .prettyPrinted)
+                print(String(data: json, encoding: .utf8)!)
+            } else {
+                print("\(error)")
+            }
+            semaphore.signal()
+        }
+        semaphore.wait()
+        break
+    case "post":
+        break
+    case "put":
+        break
+    case "delete":
+        break
+    case "patch":
+        break
+    default:
+        print(USAGE)
+        abort()
 }
-
-semaphore.wait()
-
-//client.get(path: "")
-//client.get(path: "/")
-//client.get(path: "/messages")
-
