@@ -88,5 +88,20 @@ class TrySwiftFIRDBClient {
     }
     
     func patch() {}
-    func delete() {}
+    func delete(path: String, completionHandler: @escaping (String, URLResponse?, Error?) -> Void) {
+        if path.isEmpty {
+            print("error")
+            return
+        }
+        let request: URLRequest = createMutableUrlRequest(method: .delete, path: path) as URLRequest
+        let task = session.dataTask(with: request) { (data, response, error) in
+            var result: String = "error"
+
+            if error == nil {
+                result = "success"
+            }
+            completionHandler(result, response, error)
+        }
+        task.resume()
+    }
 }
