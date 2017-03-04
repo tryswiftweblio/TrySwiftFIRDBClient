@@ -13,6 +13,7 @@ fileprivate enum HttpMethod: String {
     case post = "POST"
     case put = "PUT"
     case delete = "DELETE"
+    case patch = "PATCH"
 }
 
 class TrySwiftFIRDBClient {
@@ -89,8 +90,7 @@ class TrySwiftFIRDBClient {
     }
     
     func patch(value: Any, path: String? = nil, parameter: String? = nil, completionHandler: @escaping (NSDictionary?, URLResponse?, Error?) -> Void) {
-        var request: URLRequest = createMutableUrlRequest(path: path) as URLRequest
-        request.httpMethod = "PATCH"
+        var request: URLRequest = createMutableUrlRequest(method: .patch, path: path) as URLRequest
         request.httpBody = try! JSONSerialization.data(withJSONObject: value)
         let task = session.dataTask(with: request) { (data, response, error) in
             var result: NSDictionary? = nil
